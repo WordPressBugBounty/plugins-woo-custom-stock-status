@@ -103,7 +103,7 @@ class Woo_Stock_Setting extends Woo_Stock_Base {
 	 * load custom stock color css in head
 	 */
 	public function woo_custom_stock_status_color() {
-		$css = '<style id="woo-custom-stock-status">';
+		$css = '<style id="woo-custom-stock-status" data-wcss-ver="'.WCSS_PLUGIN_VER.'">';
 
 		$status_array = $this->status_array;
 		$status_array['grouped_product_stock_status'] = 'Grouped product stock status';
@@ -142,7 +142,10 @@ class Woo_Stock_Setting extends Woo_Stock_Base {
 			$css .= '.woocommerce div.product .woo-custom-stock-status.stock.out-of-stock::before { display: none; }';
 		}
 		
-		$css .= '.wd-product-stock.stock,.wc-block-grid .wc-block-grid__product .woo-custom-stock-status.woocss_shortcode{display:none}';
+		$css .= '.wd-product-stock.stock{display:none}';
+
+		$css .= '.woocommerce-variation-price:not(:empty)+.woocommerce-variation-availability { margin-left: 0px; }.woocommerce-variation-price, .woocommerce-variation-availability{
+			display:block}';
 		$css .= '</style><!-- woo-custom-stock-status-color-css -->';
 		echo $css;
 

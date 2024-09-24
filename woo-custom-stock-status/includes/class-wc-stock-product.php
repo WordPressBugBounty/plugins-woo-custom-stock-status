@@ -130,11 +130,11 @@ class Woo_Stock_Product extends Woo_Stock_Base {
 	* @since 1.5.6
 	*/
 	public function prevent_stock_html_duplication($html,$product){
-		if ( (get_option('b2bking_plugin_status_setting', 'disabled') !== 'disabled') &&
+		if ( is_plugin_active( 'b2bking-private-store-for-woocommerce/b2bking.php' ) && (get_option('b2bking_plugin_status_setting', 'disabled') !== 'disabled') &&
 			(get_option('b2bking_guest_access_restriction_setting', 'hide_prices') === 'hide_prices')){
 			if(is_product() && !is_user_logged_in()){
 				global $product;
-				if($product->is_type('variable')){
+				if($product->is_type('variable') || $product->is_type('variation')){
 					$html = '';
 				}
 			}
@@ -710,7 +710,7 @@ class Woo_Stock_Product extends Woo_Stock_Base {
 	 * Show stock status after price on product listing page
 	 */
 	public function add_stack_status_before_after_price($price ,$product ){  
-		if (is_shop() || is_product_category() || is_archive() || (!is_product() && !is_cart() && !is_checkout()) )  { 
+		if (is_shop() || is_product_category() || is_archive() )  { 
 			//Compatible with b2bking-pro plugin
 			if(is_plugin_active( 'b2bking/b2bking.php' )){
 				$hidestock = get_option( 'b2bking_hide_stock_for_b2c_setting', 'disabled' );
@@ -784,7 +784,7 @@ class Woo_Stock_Product extends Woo_Stock_Base {
 				   $availability['availability'] = do_shortcode($availability['availability']);
 				}
 
-				$availability_html = empty( $availability['availability'] ) ? '' : '<p class="stock ' . esc_attr( $availability['class'] ) . '" style="padding:0px 10px!important;">' . __($availability['availability'],'woo-custom-stock-status') . '</p>';
+				$availability_html = empty( $availability['availability'] ) ? '' : '<p class="stock ' . esc_attr( $availability['class'] ) . '">' . __($availability['availability'],'woo-custom-stock-status') . '</p>';
 			}
 		}
 
@@ -800,6 +800,14 @@ class Woo_Stock_Product extends Woo_Stock_Base {
 			return $html;
 		} 
 		$availability      = $product->get_availability();
+		if (strpos($availability['availability'], '[wcss_learn_more') !== false) {
+			$availability['availability'] = do_shortcode($availability['availability']);
+		}
+
+		if (strpos($availability['availability'], '[wcss_delivery_date') !== false) {
+			$availability['availability'] = do_shortcode($availability['availability']);
+		}
+
 		$availability_html = empty( $availability['availability'] ) ? '' : '<p class="stock ' . esc_attr( $availability['class'] ) . ' woocss_shortcode">' . __(esc_html( $availability['availability'] ),'woo-custom-stock-status') . '</p>';
 
 		return "<li class=\"wc-block-grid__product\">

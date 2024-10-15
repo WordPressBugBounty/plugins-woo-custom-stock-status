@@ -710,7 +710,7 @@ class Woo_Stock_Product extends Woo_Stock_Base {
 	 * Show stock status after price on product listing page
 	 */
 	public function add_stack_status_before_after_price($price ,$product ){  
-		if (is_shop() || is_product_category() || is_archive() )  { 
+		if (is_shop() || is_product_category() || is_archive() || (!is_product() && !is_cart() && !is_checkout()) )  { 
 			//Compatible with b2bking-pro plugin
 			if(is_plugin_active( 'b2bking/b2bking.php' )){
 				$hidestock = get_option( 'b2bking_hide_stock_for_b2c_setting', 'disabled' );

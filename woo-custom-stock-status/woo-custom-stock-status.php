@@ -3,7 +3,7 @@
 Plugin Name: Woo Custom Stock Status
 Plugin URI:  https://www.softound.com/
 Description: Write the custom stock status with different colors for each woocommerce product, to show in product details and listing pages.
-Version:     1.5.8
+Version:     1.5.9
 Author:      Softound Solutions
 Author URI:  https://www.softound.com/
 License:     GPL2
@@ -14,7 +14,7 @@ Text Domain: woo-custom-stock-status
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 define( 'WCSS_PLUGIN_PATH', plugin_dir_path( __FILE__ ));
 define( 'WCSS_PLUGIN_URL', plugin_dir_url(__FILE__));
-define( 'WCSS_PLUGIN_VER', '1.5.8');
+define( 'WCSS_PLUGIN_VER', '1.5.9');
 
 /**
 * Main Woocommerce Stock status class

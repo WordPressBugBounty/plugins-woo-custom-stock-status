@@ -3,8 +3,8 @@ Contributors: softound
 Donate link: https://softound.com/donation/
 Tags: woo, woocommerce, custom, stock, status
 Requires at least: 5.8
-Tested up to: 6.4
-Stable tag: 1.5.9
+Tested up to: 6.7
+Stable tag: 1.6.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -252,6 +252,9 @@ If you need any additional features, please post them in support forum, we will 
 = 1.5.9 - 14/10/24 =
 * Fix - Product shortcode stock status issue fixed
 
+= 1.6.0 - 14/11/24 =
+* Fix - Duplicate stock status issue in single product page
+
 == Upgrade Notice ==
 
 = 1.1.1 =
@@ -409,3 +412,6 @@ Fix - Stock status css issue fixed
 
 = 1.5.9 - 14/10/24 =
 Fix - Product shortcode stock status issue fixed
+
+= 1.6.0 - 14/11/24 =
+Fix - Duplicate stock status issue in single product page

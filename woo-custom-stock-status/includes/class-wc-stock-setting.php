@@ -103,7 +103,13 @@ class Woo_Stock_Setting extends Woo_Stock_Base {
 	 * load custom stock color css in head
 	 */
 	public function woo_custom_stock_status_color() {
-		$css = '<style id="woo-custom-stock-status" data-wcss-ver="'.WCSS_PLUGIN_VER.'">';
+
+		$pro_version = "";
+		if(defined('WOOCSSP_VERSION')){
+			$pro_version = 'data-wcss-pro-ver="'.WOOCSSP_VERSION.'"';
+		}
+
+		$css = '<style id="woo-custom-stock-status" data-wcss-ver="'.WCSS_PLUGIN_VER.'" '.$pro_version.'>';
 
 		$status_array = $this->status_array;
 		$status_array['grouped_product_stock_status'] = 'Grouped product stock status';

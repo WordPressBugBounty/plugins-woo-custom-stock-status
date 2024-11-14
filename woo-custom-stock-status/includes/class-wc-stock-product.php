@@ -721,13 +721,18 @@ class Woo_Stock_Product extends Woo_Stock_Base {
 				}
 			}
 
-		    $stock_status = $this->get_custom_stock_status($product);
+			if (isset($_GET['wc-ajax']) && $_GET['wc-ajax'] === 'get_variation') {
+				// Block the stock message temporarily
+				return $price;  // You can return the price without adding the stock message here
+			}
+
+		    	$stock_status = $this->get_custom_stock_status($product);
 			$wc_slr_stock_status_before_price = get_option( 'wc_slr_stock_status_before_price', 'no' );
 
 		 	if($wc_slr_stock_status_before_price=='yes'){
-		 		$price = $stock_status.$price;
-		 	}else{
-		 		$price = $price.$stock_status;
+		 	    $price = $stock_status.$price;
+		 	} else{
+		 	    $price = $price.$stock_status;
 		 	}
 		}
 		return $price;

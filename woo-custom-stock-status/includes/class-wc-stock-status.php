@@ -71,10 +71,10 @@ class Woo_Stock_Status extends Woo_Stock_Base {
 
                 echo '<tr>';
                 echo '<td>' . __( $label, 'woo-custom-stock-status' ) . '</td>';
-                echo '<td class="forminp forminp-text"><input type="text" name="' . $text_field_id . '" id="' . $text_field_id . '" value="' . get_option($text_field_id) . '" class="large-text stock-text" /></td>';
-                echo '<td class="forminp forminp-color"><span class="colorpickpreview" style="background-color: '. get_option($color_field_id, $color_default) .';">&nbsp;</span>
-                    <input type="text" name="' . $color_field_id . '" id="' . $color_field_id . '" value="' . get_option($color_field_id, $color_default) . '" class="colorpick" style="width:6em;" /></td>';
-                echo '<td class="forminp forminp-number" style="padding-bottom: 16px!important;"><input type="number" name="' . $font_size_field_id . '" id="' . $font_size_field_id . '" value="' . get_option($font_size_field_id, $font_size_default) . '" style="width:4em;" /> &nbsp;px</td>';
+                echo '<td class="forminp forminp-text"><input type="text" name="' . $text_field_id . '" id="' . $text_field_id . '" value="' . esc_html(get_option($text_field_id)) . '" class="large-text stock-text" /></td>';
+                echo '<td class="forminp forminp-color"><span class="colorpickpreview" style="background-color: '. esc_html(get_option($color_field_id, $color_default)) .';">&nbsp;</span>
+                    <input type="text" name="' . $color_field_id . '" id="' . $color_field_id . '" value="' . esc_html(get_option($color_field_id, $color_default)) . '" class="colorpick" style="width:6em;" /></td>';
+                echo '<td class="forminp forminp-number" style="padding-bottom: 16px!important;"><input type="number" name="' . $font_size_field_id . '" id="' . $font_size_field_id . '" value="' . esc_html(get_option($font_size_field_id, $font_size_default)) . '" style="width:4em;" /> &nbsp;px</td>';
                 echo '<td class="forminp forminp-checkbox">';
                 if($status != 'grouped_product_stock_status'){
                     echo '<input name="'.$cart_checkout_field.'" id="'.$cart_checkout_field.'" type="checkbox" class="" value="1" '.$checked.'>';

@@ -122,7 +122,20 @@ class Woo_Stock_Product extends Woo_Stock_Base {
 		add_action('wp_footer',array($this,'custom_script'));
 
 		add_filter('woocommerce_get_stock_html' , array($this,'prevent_stock_html_duplication'),99,2);
+		add_action( 'woocommerce_available_variation', array($this,'custom_variation_display') );
 
+	}
+
+	/**
+	 * Function is used to avoid stock status duplication on variation product detail page
+	 * This function will run when a variation is displayed on the product page
+	 */
+	public function custom_variation_display( $variation_data ) {
+		if (isset( $variation_data['price_html'] ) ) { 
+	        $variation_data['price_html'] = preg_replace( '/<p class="stock[^>]*>.*?<\/p>/is', '', $variation_data['price_html'] );
+	    }
+ 
+	    return $variation_data;
 	}
 
 	/**

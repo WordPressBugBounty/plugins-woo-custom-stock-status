@@ -150,8 +150,13 @@ class Woo_Stock_Setting extends Woo_Stock_Base {
 		
 		$css .= '.wd-product-stock.stock{display:none}';
 
-		$css .= '.woocommerce-variation-price:not(:empty)+.woocommerce-variation-availability { margin-left: 0px; }.woocommerce-variation-price, .woocommerce-variation-availability{
-			display:block}';
+		$css .= '.woocommerce-variation-price:not(:empty)+.woocommerce-variation-availability { margin-left: 0px; }.woocommerce-variation-price{
+			display:block!important}';
+
+		//sfnd#70221
+		$css .= '.woocommerce-variation-availability{
+			display:block!important}';
+
 		$css .= '</style><!-- woo-custom-stock-status-color-css -->';
 		echo $css;
 

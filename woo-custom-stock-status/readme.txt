@@ -4,7 +4,7 @@ Donate link: https://softound.com/donation/
 Tags: woo, woocommerce, custom, stock, status
 Requires at least: 5.8
 Tested up to: 6.7
-Stable tag: 1.6.1
+Stable tag: 1.6.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -259,6 +259,9 @@ If you need any additional features, please post them in support forum, we will 
 * Fix - Resolved the "Learn more" shortcode display issue for the Custom Stock Status text option on the settings page.
 * Fix - Fixed Duplicate stock status issue in Variation product detail page.
 
+= 1.6.2 - 03/12/24 =
+* Fix - Resolved the "Learn more" shortcode display issue on Porto theme.
+
 == Upgrade Notice ==
 
 = 1.1.1 =
@@ -423,4 +426,7 @@ Fix - Duplicate stock status issue in single product page
 = 1.6.1 - 30/11/24 =
 Fix - Resolved the "Learn more" shortcode display issue for the Custom Stock Status text option on the settings page.
 Fix - Fixed Duplicate stock status issue in Variation product detail page.
+
+= 1.6.2 - 03/12/24 =
+Fix - Resolved the "Learn more" shortcode display issue on Porto theme.
 

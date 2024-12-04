@@ -124,6 +124,22 @@ class Woo_Stock_Product extends Woo_Stock_Base {
 		add_filter('woocommerce_get_stock_html' , array($this,'prevent_stock_html_duplication'),99,2);
 		add_action( 'woocommerce_available_variation', array($this,'custom_variation_display') );
 
+		//hook to update stock status html in porto theme
+		add_filter( 'porto_woocommerce_stock_html', array($this,'modify_stock_status_on_porto_theme'),99,3);
+
+	}
+
+	/**
+	 * Used to update stock status HTML in Porto theme.
+	 * By default, Porto theme does not support links in stock status.
+	 * Removed esc_html to display the link in stock status.
+	 *
+	 * @since 1.6.2
+	 */
+	public function modify_stock_status_on_porto_theme($availability_html, $availability, $product){
+		$availability      = $product->get_availability();
+		$availability_html = empty( $availability['availability'] ) ? '' : '<span class="product-stock ' . esc_attr( $availability['class'] ) . '">' . esc_html__( 'Availability', 'porto' ) . ': <span class="stock">' . $availability['availability'] . '</span></span>';
+		return $availability_html;
 	}
 
 	/**

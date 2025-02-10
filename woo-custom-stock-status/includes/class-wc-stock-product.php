@@ -231,12 +231,15 @@ class Woo_Stock_Product extends Woo_Stock_Base {
 			</style>
  			<?php
 	 		foreach($this->status_array as $status=>$label){
-	 			${$status} = get_option( 'wc_slr_show_'.$status.'_in_cart_checkout' , 'yes' );	 
-	 			if (${$status} == 'yes') {
+	 			${$status} = get_option( 'wc_slr_show_'.$status.'_in_cart_checkout' , 'yes' );	
+	 			$show_status = get_option( 'wc_slr_show_in_cart_page' , 'yes' ); 
+	 			if (${$status} == 'yes' && $show_status == 'yes') {
 			    ?>
 			    <style type="text/css"> .stock.<?php echo esc_attr($status).'_color'; ?> { display: block; }.wc-block-components-product-name .stock{ display: none; }</style>
 			    <?php
-			    }
+			    }else{ ?>
+			    	<style type="text/css">.wc-block-components-product-name .stock{ display: none; }</style>
+			   <?php }
 	 		}
  		}
 	}
@@ -892,7 +895,7 @@ class Woo_Stock_Product extends Woo_Stock_Base {
 		}
 	
 		$hide_product_status = get_post_meta($product_id,'hide_stock_status',true);
-		if( ( ( $on_backorder === true ) || ( $show_status_in_email == 'yes' ) ) && ( $product_id > 0 ) ) {
+		if( ( $show_status_in_email == 'yes' ) && ( $product_id > 0 ) ) {
 
 			if( $on_backorder === true && $hide_product_status != 'yes'){
 

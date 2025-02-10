@@ -157,6 +157,7 @@ class Woo_Stock_Base {
 					$fastest_stock_status_array = explode(',', $fastest_stock_status);
 				}
 				$cat_status = array(); 
+
 				//EOF sfnd-category-page-changes
 				foreach( $variations as $variation_product ) {
 					$temp_status		= get_post_meta( $variation_product , '_' . $status . '_status' , true );
@@ -193,6 +194,7 @@ class Woo_Stock_Base {
 							//break;
 						}
 					}
+
 				} 
 				//BOF sfnd-category-page-changes
 				if(!empty($cat_status)){  //check if $cat_status not empty
@@ -319,6 +321,31 @@ class Woo_Stock_Base {
 
 						$extra_class  = 's_in_stock_color';
 
+
+						//Used to show stock status based on the quantity.
+						if( is_plugin_active( 'woo-custom-stock-status-pro/woo-custom-stock-status-pro.php' ) && get_option('wc_slr_show_quantity_based_status') === 'yes'){
+
+							$high_stock_threshold  = get_option('wc_slr_high_stock_threshold');
+						    $medium_stock_threshold = get_option('wc_slr_medium_stock_threshold');
+						    $high_stock_status_label = get_option('wc_slr_high_stock_status_label');
+						    $medium_stock_status_label = get_option('wc_slr_medium_stock_status_label');
+						    $low_stock_label = get_option('wc_slr_low_stock_label');
+
+						    $stock_quantity = $this_obj->get_stock_quantity();
+
+						    if ($stock_quantity >= $high_stock_threshold) {
+						        $availability = $high_stock_status_label;
+						        $extra_class .= ' high-stock';
+						    } elseif ($stock_quantity >= $medium_stock_threshold) {
+						        $availability = $medium_stock_status_label;
+						        $extra_class .= ' medium-stock';
+						    } elseif ($stock_quantity > 0) {
+						        $availability = $low_stock_label;
+						        $extra_class .= ' low-stock';
+						    }
+
+						}
+
 						if ( $this_obj->backorders_allowed() && $this_obj->backorders_require_notification() ) {
 							$availability .= ' ' . __( $can_be_backordered, 'woocommerce' );
 							$extra_class  .= ' can_be_backordered_color';
@@ -367,6 +394,25 @@ class Woo_Stock_Base {
 				$availability = __( $available_on_backorder, 'woocommerce' );
 				$class        = 'available-on-backorder available_on_backorder_color';
 
+			}
+
+			$show_backorder_status = get_option( 'wc_slr_show_available_backorder_variation' );
+
+			if ($this_obj->is_type('variable')) {
+				$variations = $this_obj->get_available_variations(); 
+
+				foreach ($variations as $variation) {
+					$variation_obj = wc_get_product($variation['variation_id']);
+					if ($variation_obj->get_stock_status() === 'onbackorder' && $show_backorder_status === 'yes') {
+						$custom_status = $variation_obj->get_meta('_available_on_backorder_status');
+						if ($custom_status) {
+							$custom_status = $variation_obj->get_meta('_available_on_backorder_status');
+							$availability = !empty($custom_status) ? $custom_status : $available_on_backorder;
+							$class = 'available-on-backorder available_on_backorder_color';
+							break;
+						}
+					}
+				}
 			}
 
 		}

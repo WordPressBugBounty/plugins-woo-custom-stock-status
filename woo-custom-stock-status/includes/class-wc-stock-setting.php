@@ -60,6 +60,9 @@ class Woo_Stock_Setting extends Woo_Stock_Base {
     			margin-bottom:0px ;
 			}
 
+			.woocommerce table.form-table.woo-custom-stock-status .forminp{
+				display: revert;
+			}
 		</style>
 		<?php
 	}
@@ -161,13 +164,29 @@ class Woo_Stock_Setting extends Woo_Stock_Base {
 		echo $css;
 
 		$js = '<script>';
-		$wc_slr_stock_status_after_addtocart = get_option( 'wc_slr_stock_status_after_addtocart', 'no' );
-		if($wc_slr_stock_status_after_addtocart=='yes'){
-			$js .= "jQuery(function(){ var stock_html = jQuery('.product .summary .stock').clone();jQuery('.product .summary .stock').remove();jQuery(stock_html).insertAfter('form.cart'); });";
-			//For block theme
-			$js .= "jQuery(function(){ var stock_html = jQuery('.product .wp-block-column .wp-block-woocommerce-product-price .stock').clone();jQuery('.product .wp-block-column .wp-block-woocommerce-product-price .stock').remove();jQuery(stock_html).insertAfter('form.cart'); });";
+		$wc_slr_stock_status_after_addtocart = get_option('wc_slr_stock_status_after_addtocart', 'no');
+		if ($wc_slr_stock_status_after_addtocart == 'yes') {
+			$js .= "jQuery(function() {
+				// Check if the Add to Cart button is available
+				if (jQuery('form.cart').length > 0) {
+					// Move stock status below the Add to Cart button
+					var stock_html = jQuery('.product .summary .stock').clone();
+					jQuery('.product .summary .stock').remove();
+					jQuery(stock_html).insertAfter('form.cart');
+				}
+			});";
+			// For block theme
+			$js .= "jQuery(function() {
+				// Check if the Add to Cart button is available
+				if (jQuery('form.cart').length > 0) {
+					var stock_html = jQuery('.product .wp-block-column .wp-block-woocommerce-product-price .stock').clone();
+					jQuery('.product .wp-block-column .wp-block-woocommerce-product-price .stock').remove();
+					jQuery(stock_html).insertAfter('form.cart');
+				}
+			});";
 		}
 		$js .= '</script><!-- woo-custom-stock-status-js -->';
+		
 		echo $js;
 		
 	}

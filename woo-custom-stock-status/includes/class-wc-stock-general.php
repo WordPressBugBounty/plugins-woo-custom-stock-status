@@ -215,6 +215,20 @@ class Woo_Stock_General extends Woo_Stock_Base {
 				'autoload'	=> false
 			);
 
+
+			/**
+			 * Option to display the "Available on Backorder" status for variation products on the listing page.
+			 * @since 1.6.3
+			 */
+			$settings['show_available_backorder_variation'] = array( 
+				'name'		=>	__( 'Show "Available on Backorder" status for variation products on the listing page' , 'woo-custom-stock-status' ),
+				'id'		=>	'wc_slr_show_available_backorder_variation',
+				'type'		=>	'checkbox',
+				'default'	=>	'no',
+				'desc_tip'	=> '<i>'.__( 'Note: When enabled, if stock management for the variation product is disabled, but any of its child products has stock management enabled and is available on backorder, the custom "Available on Backorder" status will be displayed on the variation products listing and category pages.)' , 'woo-custom-stock-status' ).'</i>',
+				'autoload'	=> false
+			);
+
 			$settings['section_end'] = array(
 				'type' => 'sectionend',
 				'id' => 'wc_wc_stock_list_rename_section_end'

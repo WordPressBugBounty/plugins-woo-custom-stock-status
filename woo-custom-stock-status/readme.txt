@@ -4,7 +4,7 @@ Donate link: https://softound.com/donation/
 Tags: woo, woocommerce, custom, stock, status
 Requires at least: 5.8
 Tested up to: 6.7
-Stable tag: 1.6.3
+Stable tag: 1.6.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -268,6 +268,9 @@ If you need any additional features, please post them in support forum, we will 
 * Fix - Show stock status on frontend when product is out of stock.
 * Feature - Added new option to show "Available on Backorder" status for variation products on the listing page
 
+= 1.6.4 - 10/02/24 =
+* Fix - SVN bug fixed
+
 == Upgrade Notice ==
 
 = 1.1.1 =
@@ -440,3 +443,6 @@ Fix - Resolved the "Learn more" shortcode display issue on Porto theme.
 Fix - Show/Hide stock status on cart page option issue fixed
 Fix - Show stock status on frontend when product is out of stock.
 Feature - Added new option to show "Available on Backorder" status for variation products on the listing page
+
+= 1.6.4 - 10/02/24 =
+Fix - SVN bug fixed

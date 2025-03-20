@@ -4,7 +4,7 @@ Donate link: https://softound.com/donation/
 Tags: woo, woocommerce, custom, stock, status
 Requires at least: 5.8
 Tested up to: 6.7
-Stable tag: 1.6.4
+Stable tag: 1.6.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -55,6 +55,7 @@ You can change the following default stock status and diferent colors for status
 ➜ [Bulk edit status for variables type products](https://softound.com/products/woo-custom-stock-status-pro/) [PRO]
 ➜ [Hide variable product stock status in category page](https://softound.com/products/woo-custom-stock-status-pro/) [PRO]
 ➜ [Show stock status based on quantity](https://softound.com/products/woo-custom-stock-status-pro/) [PRO]
+➜ [Create and use your own stock status](https://softound.com/products/woo-custom-stock-status-pro/) [PRO]
 
 [Click here for live demo](https://demo.softound.com/woo-custom-stock-status/)
 Username: demo
@@ -271,6 +272,10 @@ If you need any additional features, please post them in support forum, we will 
 = 1.6.4 - 10/02/24 =
 * Fix - SVN bug fixed
 
+= 1.6.5 - 11/02/24 =
+* Fix - Woo custom stock status Pro feature "stock status based on qty" changes
+* Fix - WoodMart theme compatibility issue fixed
+
 == Upgrade Notice ==
 
 = 1.1.1 =
@@ -446,3 +451,6 @@ Feature - Added new option to show "Available on Backorder" status for variation
 
 = 1.6.4 - 10/02/24 =
 Fix - SVN bug fixed
+
+= 1.6.5 - 11/02/24 =
+Fix - WoodMart theme compatibility issue fixed

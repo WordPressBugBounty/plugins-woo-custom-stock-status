@@ -42,11 +42,11 @@ class Woo_Stock_Status extends Woo_Stock_Base {
             echo '<table class="widefat striped form-table woo-custom-stock-status">';
             echo '<thead>
                     <tr>
-                        <th scope="row" style="width:20%">' . __( 'Default Stock Status', 'woo-custom-stock-status' ) . '</th>
-                        <th scope="row" style="width:42%">' . __( 'Custom Stock Status', 'woo-custom-stock-status' ) . '</th>
-                        <th scope="row" style="width:13%">' . __( 'Color', 'woo-custom-stock-status' ) . '</th>
-                        <th scope="row" style="width:8%">' . __( 'Font Size', 'woo-custom-stock-status' ) . '</th>
-                        <th scope="row" style="width:18%">' . __( 'Show on Cart & Checkout', 'woo-custom-stock-status' ) . '</th>
+                        <th scope="row" id="woo_status_lable" style="width:20%">' . __( 'Default Stock Status', 'woo-custom-stock-status' ) . '</th>
+                        <th scope="row" id="woo_status_text" style="width:42%">' . __( 'Custom Stock Status', 'woo-custom-stock-status' ) . '</th>
+                        <th scope="row" id="woo_status_color" style="width:13%">' . __( 'Color', 'woo-custom-stock-status' ) . '</th>
+                        <th scope="row" id="woo_status_font" style="width:8%">' . __( 'Font Size', 'woo-custom-stock-status' ) . '</th>
+                        <th scope="row" id="woo_status_cart" style="width:18%">' . __( 'Show on Cart & Checkout', 'woo-custom-stock-status' ) . '</th>
                     </tr>
                   </thead>';
             echo '<tbody>';
@@ -69,21 +69,32 @@ class Woo_Stock_Status extends Woo_Stock_Base {
                     $checked = 'checked="checked"';
                 }
 
-                echo '<tr>';
+                echo '<tr class="woo_default_status">';
                 echo '<td>' . __( $label, 'woo-custom-stock-status' ) . '</td>';
-                echo '<td class="forminp forminp-text"><input type="text" name="' . $text_field_id . '" id="' . $text_field_id . '" value="' . esc_html(get_option($text_field_id)) . '" class="large-text stock-text" /></td>';
-                echo '<td class="forminp forminp-color"><span class="colorpickpreview" style="background-color: '. esc_html(get_option($color_field_id, $color_default)) .';">&nbsp;</span>
-                    <input type="text" name="' . $color_field_id . '" id="' . $color_field_id . '" value="' . esc_html(get_option($color_field_id, $color_default)) . '" class="colorpick" style="width:6em;" /></td>';
-                echo '<td class="forminp forminp-number" style="padding-bottom: 16px!important;"><input type="number" name="' . $font_size_field_id . '" id="' . $font_size_field_id . '" value="' . esc_html(get_option($font_size_field_id, $font_size_default)) . '" style="width:4em;" /> &nbsp;px</td>';
+                echo '<td class="forminp forminp-text"><input type="text" name="' . $text_field_id . '" id="' . $text_field_id . '" value="' . get_option($text_field_id) . '" class="large-text stock-text" /></td>';
+                echo '<td class="forminp forminp-color"><span class="colorpickpreview" style="background-color: '. get_option($color_field_id, $color_default) .';">&nbsp;</span>
+                    <input type="text" name="' . $color_field_id . '" id="' . $color_field_id . '" value="' . get_option($color_field_id, $color_default) . '" class="colorpick" style="width:6em;" /></td>';
+                echo '<td class="forminp forminp-number" style="padding-bottom: 16px!important;"><input type="number" name="' . $font_size_field_id . '" id="' . $font_size_field_id . '" value="' . get_option($font_size_field_id, $font_size_default) . '" style="width:4em;" /> &nbsp;px</td>';
                 echo '<td class="forminp forminp-checkbox">';
                 if($status != 'grouped_product_stock_status'){
                     echo '<input name="'.$cart_checkout_field.'" id="'.$cart_checkout_field.'" type="checkbox" class="" value="1" '.$checked.'>';
+                }else{
+                    echo ' - ';
                 }
                 echo '</td>';
                 echo '</tr>';
             }
 
+            $new_stock_statuses_html = apply_filters( 'wc_wc_add_new_stock_status_html', '');
+
+            if(!empty($new_stock_statuses_html)){
+                echo $new_stock_statuses_html;
+            }
+
             echo '</tbody>';
+            echo '<tfoot>';
+            echo '<tr><th><a href="javascript:void(0)" class="button" id="wcss_insert_new_status" disabled="disabled" style="text-align:center;width:100%">Insert new status</a></th><th colspan="4" id="wcss_activate_pro"><p style="margin: 0;font-size: 15px;"><a href="https://softound.com/products/woo-custom-stock-status-pro/" target="_blank" style="font-weight: bold;">Get Woo Custom Stock Status Pro</a> to activate this feature. With this feature, you can add your own status to the products.</p></th></tr>';
+            echo '</tfoot>';
             echo '</table>';
         }
     }

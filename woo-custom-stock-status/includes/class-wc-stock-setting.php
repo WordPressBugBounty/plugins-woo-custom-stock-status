@@ -51,7 +51,7 @@ class Woo_Stock_Setting extends Woo_Stock_Base {
 				text-align: center;
 			}
 			.woo-custom-stock-status .stock-text{
-				width: 440px!important;
+				width: 420px!important;
 			}
 
 			.woo-custom-stock-status .forminp-number{
@@ -60,7 +60,23 @@ class Woo_Stock_Setting extends Woo_Stock_Base {
     			margin-bottom:0px ;
 			}
 
-			.woocommerce table.form-table.woo-custom-stock-status .forminp{
+			.woo-custom-stock-status #woo_status_lable{
+				width: 20%;
+			}
+			.woo-custom-stock-status #woo_status_text{
+				width: 42%;
+			}
+			.woo-custom-stock-status #woo_status_color{
+				width: 13%;
+			}
+			.woo-custom-stock-status #woo_status_font{
+				width: 8%;
+			}
+			.woo-custom-stock-status #woo_status_cart{
+				width: 18%;
+			}
+
+			.woocommerce table.form-table .forminp{
 				display: revert;
 			}
 		</style>
@@ -153,12 +169,14 @@ class Woo_Stock_Setting extends Woo_Stock_Base {
 		
 		$css .= '.wd-product-stock.stock{display:none}';
 
-		$css .= '.woocommerce-variation-price:not(:empty)+.woocommerce-variation-availability { margin-left: 0px; }.woocommerce-variation-price{
-			display:block!important}';
-
-		//sfnd#70221
-		$css .= '.woocommerce-variation-availability{
-			display:block!important}';
+		if ( !function_exists('woodmart_get_opt') || ( function_exists('woodmart_get_opt') && !woodmart_get_opt('single_product_variations_price') ) ) {
+		    $css .= '.woocommerce-variation-price:not(:empty)+.woocommerce-variation-availability { margin-left: 0px; }.woocommerce-variation-price{
+		        display:block!important}';
+		    
+		    //sfnd#70221
+		    $css .= '.woocommerce-variation-availability{
+		        display:block!important}';
+		}
 
 		$css .= '</style><!-- woo-custom-stock-status-color-css -->';
 		echo $css;
@@ -189,5 +207,43 @@ class Woo_Stock_Setting extends Woo_Stock_Base {
 		
 		echo $js;
 		
+	}
+
+	/**
+	 * Function to create CSS for customizing the color and font size of stock statuses
+	 */
+	public function create_style_for_woo_custom_stock_status($status_array,$status_color_array,$status_font_size_array){
+		$css = '';
+		if(!empty($status_array)){
+			foreach ($status_array as $key => $label) {
+				$color_options_default = $status_color_array[$key.'_color']['default'];
+				$status_color = $key.'_color';
+				$status_color_code = (get_option('wc_slr_'.$status_color,$color_options_default)=='') ? $color_options_default : get_option('wc_slr_'.$status_color,$color_options_default);
+
+
+				$font_size_options_default = $status_font_size_array[$key.'_font_size']['default'];
+				$status_font_size = $key.'_font_size';
+				$status_font_size_code = (get_option('wc_slr_'.$status_font_size,$font_size_options_default)=='') ? $font_size_options_default : get_option('wc_slr_'.$status_font_size,$font_size_options_default);
+				if(!empty($status_font_size_code)){
+					if($status_font_size_code=='inherit'){
+						$status_font_size_code = 'font-size: '.$status_font_size_code;
+					} else {
+						$status_font_size_code = 'font-size: '.$status_font_size_code.'px;';
+					}
+				}
+
+				$css .= sprintf('.woocommerce div.product .woo-custom-stock-status.%s { color: %s !important; %s }', $status_color, $status_color_code, $status_font_size_code);
+
+				$css .= sprintf('.woo-custom-stock-status.%s { color: %s !important; %s }', $status_color, $status_color_code, $status_font_size_code);
+
+				$css .= '.wc-block-components-product-badge{display:none!important;}';
+				//For details page
+				$css .= sprintf('ul .%s,ul.products .%s, li.wc-block-grid__product .%s { color: %s !important; %s }', $status_color, $status_color, $status_color, $status_color_code, $status_font_size_code);//For listing page
+				$css .= sprintf('.woocommerce-table__product-name .%s { color: %s !important; %s }', $status_color,$status_color_code, $status_font_size_code);
+				$css .= sprintf('p.%s { color: %s !important; %s }', $status_color,$status_color_code, $status_font_size_code);
+			}
+		}
+
+		return $css;
 	}
 }

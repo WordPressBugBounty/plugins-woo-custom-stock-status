@@ -334,13 +334,13 @@ class Woo_Stock_Base {
 						    $stock_quantity = $this_obj->get_stock_quantity();
 
 						    if ($stock_quantity >= $high_stock_threshold) {
-						        $availability = $high_stock_status_label;
+						        $availability = $high_stock_status_label ?: $availability;
 						        $extra_class .= ' high-stock';
 						    } elseif ($stock_quantity >= $medium_stock_threshold) {
-						        $availability = $medium_stock_status_label;
+						        $availability = $medium_stock_status_label ?: $availability;
 						        $extra_class .= ' medium-stock';
 						    } elseif ($stock_quantity > 0) {
-						        $availability = $low_stock_label;
+						        $availability = $low_stock_label ?: $availability;
 						        $extra_class .= ' low-stock';
 						    }
 

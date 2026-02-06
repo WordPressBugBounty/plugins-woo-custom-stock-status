@@ -1,10 +1,10 @@
-=== Woo Custom Stock Status ===
+=== Advanced Custom Stock Status ===
 Contributors: softound
 Donate link: https://softound.com/donation/
 Tags: woo, woocommerce, custom, stock, status
 Requires at least: 5.8
 Tested up to: 6.7
-Stable tag: 1.6.5
+Stable tag: 1.6.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -276,6 +276,12 @@ If you need any additional features, please post them in support forum, we will 
 * Fix - Woo custom stock status Pro feature "stock status based on qty" changes
 * Fix - WoodMart theme compatibility issue fixed
 
+= 1.6.6 - 01/12/25 =
+* Updated plugin display name to comply with WordPress.org and WooCommerce trademark guidelines.
+* Replaced banners/icons to remove any WooCommerce-branded assets.
+* Updated readme header and descriptions to use compliant naming.
+* No functional changes made to plugin core.
+
 == Upgrade Notice ==
 
 = 1.1.1 =
@@ -454,3 +460,9 @@ Fix - SVN bug fixed
 
 = 1.6.5 - 11/02/24 =
 Fix - WoodMart theme compatibility issue fixed
+
+= 1.6.6 - 01/12/25 =
+* Updated plugin display name to comply with WordPress.org and WooCommerce trademark guidelines.
+* Replaced banners/icons to remove any WooCommerce-branded assets.
+* Updated readme header and descriptions to use compliant naming.
+* No functional changes made to plugin core.

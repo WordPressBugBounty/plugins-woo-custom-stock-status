@@ -20,7 +20,10 @@ class Woo_Stock_Status extends Woo_Stock_Base {
      * @uses $this->get_settings()
      */
     public function update_settings() {
-        woocommerce_update_options( $this->stock_status_settings() );
+        global $current_section;
+        if ( $current_section === 'stock_status' ) {  // Only save when on Stock Status tab
+            woocommerce_update_options( $this->stock_status_settings() );
+        }
     }
 
     public function stock_status_settings_tab(){

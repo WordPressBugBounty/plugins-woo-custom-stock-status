@@ -16,7 +16,7 @@ class Woo_Stock_General extends Woo_Stock_Base {
     public function general_settings_tab(){
     	global $current_section;
 
-    	if ( $current_section == '' ) {
+    	if ( $current_section === '' ) {
     		woocommerce_admin_fields( $this->general_settings() );
     	}
     }

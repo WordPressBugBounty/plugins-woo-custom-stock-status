@@ -20,6 +20,35 @@ class Woo_Stock_Setting extends Woo_Stock_Base {
 		add_action( 'admin_head',array($this,'admin_custom_style'));
 
 		add_filter('gettext', array($this,'custom_wc_save_button_text'), 20, 3);
+
+		// Fix: neutralise third-party form submit interference on WC settings page
+		add_action( 'admin_enqueue_scripts', array( $this, 'fix_third_party_form_interference' ) );
+	}
+
+	public function fix_third_party_form_interference() {
+		$screen = get_current_screen();
+		if ( ! $screen || $screen->id !== 'woocommerce_page_wc-settings' ) return;
+	
+		wp_register_script(
+			'wcss-form-fix',
+			false,
+			array( 'jquery', 'buzzbar-promobar-admin' ),
+			null,
+			true  // load in footer, after Buzzbar
+		);
+		wp_enqueue_script( 'wcss-form-fix' );
+	
+		wp_add_inline_script( 'wcss-form-fix', "
+			jQuery(function($){
+				// Re-enable submit button on WC settings form submit.
+				// Runs after Buzzbar's global form handler which incorrectly
+				// disables submit buttons on all admin pages.
+				$(document).on('submit', 'form', function(){
+					$(this).find('button[type=\"submit\"], input[type=\"submit\"]')
+						   .prop('disabled', false);
+				});
+			});
+		" );
 	}
 
 	public function custom_wc_save_button_text($translated_text, $text, $domain) { 

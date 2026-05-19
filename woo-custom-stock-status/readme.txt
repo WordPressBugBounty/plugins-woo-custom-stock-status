@@ -4,7 +4,7 @@ Donate link: https://softound.com/donation/
 Tags: woo, woocommerce, custom, stock, status
 Requires at least: 5.8
 Tested up to: 6.7
-Stable tag: 1.6.6
+Stable tag: 1.6.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -282,6 +282,9 @@ If you need any additional features, please post them in support forum, we will 
 * Updated readme header and descriptions to use compliant naming.
 * No functional changes made to plugin core.
 
+= 1.6.7 - 11/05/26 =
+* Fix - Buzzbar – Announcement Bar plugin compatibility issue fixed
+
 == Upgrade Notice ==
 
 = 1.1.1 =
@@ -462,7 +465,10 @@ Fix - SVN bug fixed
 Fix - WoodMart theme compatibility issue fixed
 
 = 1.6.6 - 01/12/25 =
-* Updated plugin display name to comply with WordPress.org and WooCommerce trademark guidelines.
-* Replaced banners/icons to remove any WooCommerce-branded assets.
-* Updated readme header and descriptions to use compliant naming.
-* No functional changes made to plugin core.
+Updated plugin display name to comply with WordPress.org and WooCommerce trademark guidelines.
+Replaced banners/icons to remove any WooCommerce-branded assets.
+Updated readme header and descriptions to use compliant naming.
+No functional changes made to plugin core.
+
+= 1.6.7 - 11/05/26 =
+* Fix - Buzzbar – Announcement Bar plugin compatibility issue fixed
